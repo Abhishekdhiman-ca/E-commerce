@@ -49,7 +49,7 @@
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
     <div class="container">
-        <a class="navbar-brand" href="#"><img class="logo" th:src="@{/Blogo.jpg}" alt="Logo"></a>
+        <a class="navbar-brand" href="#"><img class="logo" th:src="@{/logo.jpg}" alt="Logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -70,12 +70,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/cart"><span class="badge text-bg-danger" th:text="${cartQty}"></span> Cart</a>
                 </li>
+                <li class="nav-item" th:if="${session.user == null}">
+                    <a class="nav-link" th:href="@{'/login'(redirectUrl=${redirectUrl})}">Login</a>
+                </li>
+                <li class="nav-item" th:if="${session.user != null}">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                <li class="nav-item" th:if="${session.user != null}">
+                    <a class="nav-link" th:href="@{/profile}" th:text="'Hi, ' + ${session.user.firstName}">Profile</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<!-- Main Content -->
 <div class="content">
     <div class="container login-container">
         <h2 class="text-center mb-4">Login</h2>
@@ -146,12 +154,11 @@
             </div>
         </div>
     </div>
-    <div class="text-center p-3 bg-dark text-white">
+    <div class="text-center p-3 text-white">
         © 2024 Company Name. All rights reserved.
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

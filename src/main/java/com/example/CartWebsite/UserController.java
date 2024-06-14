@@ -40,19 +40,27 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(@RequestParam(required = false) String redirectUrl, Model model) {
+        model.addAttribute("redirectUrl", redirectUrl);
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
+    public String login(@RequestParam String email, @RequestParam String password,
+                        @RequestParam(required = false) String redirectUrl, HttpSession session, Model model) {
         User user = userService.findByEmail(email);
         if (user == null || !password.equals(user.getPassword())) {
             model.addAttribute("error", "Invalid email or password.");
             return "login";
         }
         session.setAttribute("user", user);
-        return "redirect:/checkout";
+        return "redirect:" + (redirectUrl != null ? redirectUrl : "/");
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 
     @GetMapping("/dashboard")

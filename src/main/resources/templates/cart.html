@@ -15,7 +15,7 @@
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="#"><img class="logo" th:src="@{/Blogo.jpg}" alt="Logo"></a>
+        <a class="navbar-brand" href="#"><img class="logo" th:src="@{/logo.jpg}" alt="Logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,6 +35,15 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/cart"><span class="badge text-bg-danger" th:text="${cartQty}" ></span> Cart</a>
+                </li>
+                <li class="nav-item" th:if="${session.user == null}">
+                    <a class="nav-link" th:href="@{'/login'(redirectUrl='/cart')}">Login</a>
+                </li>
+                <li class="nav-item" th:if="${session.user != null}">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                <li class="nav-item" th:if="${session.user != null}">
+                    <a class="nav-link" th:href="@{/profile}" th:text="'Hi, ' + ${session.user.firstName}">Profile</a>
                 </li>
             </ul>
         </div>
@@ -67,7 +76,6 @@
                     <input type="hidden" name="id" th:value="${item.id}">
                     <button class="btn btn-danger" type="submit">X</button>
                 </form>
-
             </td>
         </tr>
         <tr>
@@ -79,7 +87,8 @@
             <th scope="row"></th>
             <td colspan="4"></td>
             <td>
-                <form th:action="@{/login}" method="get">
+                <form th:action="${session.user == null ? '/login' : '/checkout'}" method="get">
+                    <input type="hidden" name="redirectUrl" th:value="'/checkout'">
                     <button type="submit" class="common-theme-button btn btn-primary">Checkout</button>
                 </form>
             </td>

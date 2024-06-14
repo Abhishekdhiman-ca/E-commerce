@@ -58,6 +58,7 @@ public class CartController {
             cartItems.add(newCartItem);
         }
 
+        session.setAttribute("cartItems", cartItems);
         return "redirect:/";
     }
 
@@ -74,7 +75,17 @@ public class CartController {
 
     @PostMapping("/purchase")
     public String purchase(HttpSession session, Model model) {
-        List<CartItem> cartItems = cartItemRepository.findAll();
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
+        if (cartItems == null || cartItems.isEmpty()) {
+            model.addAttribute("error", "Your cart is empty.");
+            return "redirect:/checkout";
+        }
+
         double totalAmount = calculateTotal(cartItems);
 
         cartItemRepository.deleteAll(); // Remove all items from the cart
@@ -106,6 +117,11 @@ public class CartController {
 
     @GetMapping("/checkout")
     public String checkout(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
         if (cartItems == null) {
             cartItems = new ArrayList<>();
@@ -113,6 +129,7 @@ public class CartController {
         model.addAttribute("cartItems", cartItems);
         model.addAttribute("cartQty", cartItems.size());
         model.addAttribute("total", calculateTotal(cartItems));
+        model.addAttribute("user", user);
         return "checkout";
     }
 
