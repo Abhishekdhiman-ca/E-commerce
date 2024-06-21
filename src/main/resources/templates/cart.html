@@ -15,7 +15,7 @@
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="#"><img class="logo" th:src="@{/logo.jpg}" alt="Logo"></a>
+        <a class="navbar-brand" href="#"><img class="logo" th:src="@{/Wlogo.png}" alt="Logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,7 +34,7 @@
                     <a class="nav-link" href="#">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/cart"><span class="badge text-bg-danger" th:text="${cartQty}" ></span> Cart</a>
+                    <a class="nav-link" href="/cart"><span class="badge text-bg-warning" th:text="${cartQty}" ></span> Cart</a>
                 </li>
                 <li class="nav-item" th:if="${session.user == null}">
                     <a class="nav-link" th:href="@{'/login'(redirectUrl='/cart')}">Login</a>
@@ -74,7 +74,7 @@
             <td>
                 <form th:action="@{/remove}" method="post">
                     <input type="hidden" name="id" th:value="${item.id}">
-                    <button class="btn btn-danger" type="submit">X</button>
+                    <button class="btn btn-warning" type="submit">X</button>
                 </form>
             </td>
         </tr>
@@ -89,7 +89,10 @@
             <td>
                 <form th:action="${session.user == null ? '/login' : '/checkout'}" method="get">
                     <input type="hidden" name="redirectUrl" th:value="'/checkout'">
-                    <button type="submit" class="common-theme-button btn btn-primary">Checkout</button>
+                    <button type="submit" class="common-theme-button btn" style="background-color: #0071dc; color: white; border: none; border-radius: 0px; padding: 10px 50px;"
+                            onmouseover="this.style.backgroundColor='#f7aa08'; this.style.color='black';"
+                            onmouseout="this.style.backgroundColor='#0071dc'; this.style.color='white';">Checkout</button>
+
                 </form>
             </td>
         </tr>
@@ -101,21 +104,20 @@
 <footer class="footer-area text-center text-lg-start mt-5">
     <div class="container p-4">
         <div class="row">
-            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Company Name</h5>
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Walmart</h5>
                 <p>
-                    Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit.
+                    Walmart is committed to helping people save money and live better. With a wide range of products and services, we strive to provide the best shopping experience both online and in our stores.
                 </p>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Links</h5>
+            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Quick Links</h5>
                 <ul class="list-unstyled mb-0">
                     <li>
                         <a href="home.html" class="text-dark">Home</a>
                     </li>
                     <li>
-                        <a href="about.html" class="text-dark">About</a>
+                        <a href="about.html" class="text-dark">About Us</a>
                     </li>
                     <li>
                         <a href="contact.html" class="text-dark">Contact</a>
@@ -126,23 +128,44 @@
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase mb-0">Contact</h5>
+                <h5 class="text-uppercase">Customer Service</h5>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="#!" class="text-dark">Email: info@company.com</a>
+                        <a href="mailto:help@walmart.com" class="text-dark">Email: help@walmart.com</a>
                     </li>
                     <li>
-                        <a href="#!" class="text-dark">Phone: +123 456 7890</a>
+                        <a href="tel:+18009256278" class="text-dark">Phone: +1 800 925 6278</a>
                     </li>
                     <li>
-                        <a href="#!" class="text-dark">Address: 123 Street, City, Country</a>
+                        <a href="store-locator.html" class="text-dark">Store Locator</a>
+                    </li>
+                    <li>
+                        <a href="faq.html" class="text-dark">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-0">Corporate Info</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="https://corporate.walmart.com" class="text-dark" target="_blank">Corporate Website</a>
+                    </li>
+                    <li>
+                        <a href="mailto:corporate@walmart.com" class="text-dark">Email: corporate@walmart.com</a>
+                    </li>
+                    <li>
+                        <a href="tel:+14792733000" class="text-dark">Phone: +1 479 273 3000</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Address: 702 SW 8th Street, Bentonville, AR 72716, USA</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="text-center p-3 text-white">
-        © 2024 Company Name. All rights reserved.
+
+    <div class="text-center p-3 text-white bg-dark">
+        © 2024 Walmart Inc. All rights reserved. | Walmart and the Walmart logo are registered trademarks of Walmart Inc.
     </div>
 </footer>
 

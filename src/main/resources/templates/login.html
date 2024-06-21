@@ -24,6 +24,8 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1s ease-in-out;
+            max-width: 400px;
+            width: 100%;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -43,13 +45,19 @@
             background-color: #f1f1f1;
             padding: 1rem 0;
         }
+        .login-image {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
     <div class="container">
-        <a class="navbar-brand" href="#"><img class="logo" th:src="@{/logo.jpg}" alt="Logo"></a>
+        <a class="navbar-brand" href="#"><img class="logo" th:src="@{/Wlogo.png}" alt="Logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -84,51 +92,57 @@
     </div>
 </nav>
 
-<div class="content">
-    <div class="container login-container">
-        <h2 class="text-center mb-4">Login</h2>
-        <form th:action="@{/login}" method="post">
-            <input type="hidden" name="redirectUrl" th:value="${redirectUrl}">
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
+<div class="content container-fluid d-flex">
+    <div class="row flex-grow-1">
+        <div class="col-md-6 d-flex align-items-center">
+            <img th:src="@{/login.jpeg}" alt="Walmart" class="login-image">
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+            <div class="login-container">
+                <h2 class="text-center mb-4">Login</h2>
+                <form th:action="@{/login}" method="post">
+                    <input type="hidden" name="redirectUrl" th:value="${redirectUrl}">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                    </div>
+                    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                    <p class="mt-3 text-center">Don't have an account? <a th:href="@{/signup}">Signup</a></p>
+                </form>
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-            </div>
-            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
-            <p class="mt-3 text-center">Don't have an account? <a th:href="@{/signup}">Signup</a></p>
-        </form>
+        </div>
     </div>
 </div>
 
 <!-- Footer -->
-<footer class="footer-area text-center text-lg-start w-100">
+<footer class="footer-area text-center text-lg-start mt-5">
     <div class="container p-4">
         <div class="row">
-            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Company Name</h5>
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Walmart</h5>
                 <p>
-                    Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit.
+                    Walmart is committed to helping people save money and live better. With a wide range of products and services, we strive to provide the best shopping experience both online and in our stores.
                 </p>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Links</h5>
+            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Quick Links</h5>
                 <ul class="list-unstyled mb-0">
                     <li>
                         <a href="home.html" class="text-dark">Home</a>
                     </li>
                     <li>
-                        <a href="about.html" class="text-dark">About</a>
+                        <a href="about.html" class="text-dark">About Us</a>
                     </li>
                     <li>
                         <a href="contact.html" class="text-dark">Contact</a>
@@ -139,23 +153,44 @@
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase mb-0">Contact</h5>
+                <h5 class="text-uppercase">Customer Service</h5>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="#!" class="text-dark">Email: info@company.com</a>
+                        <a href="mailto:help@walmart.com" class="text-dark">Email: help@walmart.com</a>
                     </li>
                     <li>
-                        <a href="#!" class="text-dark">Phone: +123 456 7890</a>
+                        <a href="tel:+18009256278" class="text-dark">Phone: +1 800 925 6278</a>
                     </li>
                     <li>
-                        <a href="#!" class="text-dark">Address: 123 Street, City, Country</a>
+                        <a href="store-locator.html" class="text-dark">Store Locator</a>
+                    </li>
+                    <li>
+                        <a href="faq.html" class="text-dark">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-0">Corporate Info</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="https://corporate.walmart.com" class="text-dark" target="_blank">Corporate Website</a>
+                    </li>
+                    <li>
+                        <a href="mailto:corporate@walmart.com" class="text-dark">Email: corporate@walmart.com</a>
+                    </li>
+                    <li>
+                        <a href="tel:+14792733000" class="text-dark">Phone: +1 479 273 3000</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Address: 702 SW 8th Street, Bentonville, AR 72716, USA</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="text-center p-3 text-white">
-        © 2024 Company Name. All rights reserved.
+
+    <div class="text-center p-3 text-white bg-dark">
+        © 2024 Walmart Inc. All rights reserved. | Walmart and the Walmart logo are registered trademarks of Walmart Inc.
     </div>
 </footer>
 

@@ -1,4 +1,4 @@
- /* Custom CSS */
+/* Custom CSS */
 body {
     font-family: 'Arial', sans-serif;
 }
@@ -19,6 +19,52 @@ body {
 .navbar-nav .nav-link:hover {
     color: #007bff;
 }
+
+/* Top Bar */
+.top-bar {
+    background-color: #0071dc;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.welcome-text {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: fadeIn 2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.walmart-icon {
+    width: 24px; /* Adjust size as needed */
+    height: 24px; /* Adjust size as needed */
+    margin-right: 10px;
+    animation: iconBounce 2s infinite;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes iconBounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
 /* Carousel styles */
 .carousel-inner {
     width: 100%;
@@ -41,8 +87,9 @@ body {
 .carousel-control-next-icon {
     filter: invert(100%);
 }
+
 footer {
-    background:black;
+    background: black;
     padding: 40px 0;
 }
 
@@ -63,66 +110,65 @@ footer .text-white {
     color: #fff !important;
 }
 
-
 /* Logo Area */
-.logo{
+.logo {}
 
+.footer-area {
+    background: black;
 }
 
-.footer-area{
-background:black;
+.footer-area h5 {
+    color: white !important;
 }
 
-.footer-area h5{
-color:white!important;
-}
-.footer-area p{
-color:white!important;
+.footer-area p {
+    color: white !important;
 }
 
-.footer-area a{
-color:white!important;
+.footer-area a {
+    color: white !important;
 }
 
-
-.theme-button{
-background-color:red;
-border:0px;
-border-radius:0px;
-padding:10px 50px;
+.custom-theme-button {
+    background-color: #0071dc!important; /* Set the background color to blue */
+    color: white !important; /* Set the text color to white */
+    border: none !important; /* Remove any borders */
+    border-radius: 0px !important; /* Remove border radius */
+    padding: 10px 50px !important; /* Set padding */
 }
 
-.theme-button:hover{
-background-color:blue;
-padding:10px 50px;
+.custom-theme-button:hover {
+    background-color: #f7aa08 !important; /* Change background color to yellow on hover */
+    color: black !important; /* Change text color to black on hover */
 }
 
-
-.common-theme-button{
-background-color:red;
-border:0px;
-border-radius:0px;
+.custom-common-theme-button {
+    background-color:#0071dc !important; /* Set the background color to blue */
+    color: white !important; /* Set the text color to white */
+    border: none !important; /* Remove any borders */
+    border-radius: 0px !important; /* Remove border radius */
 }
 
-.common-theme-button:hover{
-background-color:blue;
+.custom-common-theme-button:hover {
+    background-color: #f7aa08 !important; /* Change background color to yellow on hover */
+    color: black !important; /* Change text color to black on hover */
 }
 
-.hero-left-text{
-margin-top:100px;
+.hero-left-text {
+    margin-top: 100px;
 }
 
-
-.card-img-top{
-height:250px;
-padding:20px;
-}
-.card{
-margin-top:20px;
-margin-bottom:20px;
+.card-img-top {
+    height: 250px;
+    padding: 20px;
 }
 
-.cart-imge{
-width:100px;
-height:100px;
+.card {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cart-imge {
+    width: 100px;
+    height: 100px;
 }

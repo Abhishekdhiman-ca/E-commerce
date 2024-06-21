@@ -171,7 +171,10 @@
         <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
     </label>
     <form th:action="@{/purchase}" method="post">
-        <button type="submit" class="btn">Purchase</button>
+        <button type="submit" class="btn" style="background-color: blue; color: white; border: none; border-radius: 0px; padding: 10px 50px;"
+                onmouseover="this.style.backgroundColor='#f7aa08'; this.style.color='black';"
+                onmouseout="this.style.backgroundColor='blue'; this.style.color='white';">Purchase</button>
+
     </form>
 </div>
 

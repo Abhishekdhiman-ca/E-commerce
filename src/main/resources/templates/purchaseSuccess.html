@@ -16,10 +16,8 @@
                 <h5 class="modal-title" id="successModalLabel">Purchase Successful</h5>
             </div>
             <div class="modal-body">
-                <p th:text="${message}"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="closeModal">Close</button>
+                <p id="message1">Your purchase is successful!</p>
+                <p id="message2" style="display: none;">Your order has been submitted.</p>
             </div>
         </div>
     </div>
@@ -30,14 +28,15 @@
         var successModal = new bootstrap.Modal(document.getElementById('successModal'), {});
         successModal.show();
 
-        document.getElementById("closeModal").addEventListener("click", function() {
-            window.location.href = "/";
-        });
+        setTimeout(function() {
+            document.getElementById('message1').style.display = 'none';
+            document.getElementById('message2').style.display = 'block';
+        }, 2000); // Show the second message after 2 seconds
 
         setTimeout(function() {
             successModal.hide();
             window.location.href = "/";
-        }, 3000); // Redirect after 3 seconds
+        }, 4000); // Redirect to home page after another 2 seconds
     });
 </script>
 </body>
